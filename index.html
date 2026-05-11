@@ -924,7 +924,9 @@ function renderPlantilla(){
     var isGK=p.pos==='GK',st=p.stats||{};
     var totPJ=0,totG=0,totA=0,totGC=0,totPI=0;
     var safePName=p.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-    var pPhoto=PLAYER_PHOTOS[p.name]?'<img src="'+PLAYER_PHOTOS[p.name]+'" style="width:24px;height:24px;object-fit:cover;border-radius:50%;flex-shrink:0" onerror="this.style.display=\'none\'">':'<div style="width:24px;height:24px;border-radius:50%;background:var(--bd2);flex-shrink:0"></div>';
+    var _purl=PLAYER_PHOTOS[p.name]||'';
+    var _puefa=_purl.indexOf('uefa.com')!==-1;
+    var pPhoto=_purl?'<img src="'+_purl+'" style="width:24px;height:24px;object-fit:cover;border-radius:50%;flex-shrink:0'+(_puefa?';mix-blend-mode:multiply;filter:contrast(1.1)':'')+'" onerror="this.style.display=\'none\'">':'<div style="width:24px;height:24px;border-radius:50%;background:var(--bd2);flex-shrink:0"></div>';
     var cells='<td style="padding-left:10px;font-weight:700"><div style="display:flex;align-items:center;gap:6px">'+pPhoto+'<span class="pb p'+p.pos+'">'+PL[p.pos]+'</span> <span style="cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:#3A4455" onclick="openPlayerModal(\''+safePName+'\')" title="Ver perfil">'+esc(p.name)+'</span></div></td>';
     comps.forEach(function(c){
       var cs=st[c]||{goles:0,asistencias:0,partidos:0,gc:0,imbatidas:0};
@@ -985,7 +987,9 @@ function getTopN(stat,n,sn){
 function mkTopCard(title,items,lbl){
   var rk=['r1','r2','r3','r4','r5'];
   var rows=items.length?items.map(function(x,i){
-    return'<div class="tr2"><div class="rnk '+rk[i]+'">'+(i+1)+'</div>'+(PLAYER_PHOTOS[x.name]?'<img src="'+PLAYER_PHOTOS[x.name]+'" style="width:22px;height:22px;object-fit:cover;border-radius:50%;margin-right:6px;vertical-align:middle" onerror="this.style.display=\'none\'">':'')+'<div class="tnm">'+esc(x.name)+'</div><div class="tvw"><div class="tvl">'+x.val+'</div><div class="tlb">'+lbl+'</div></div></div>';
+    var _u=PLAYER_PHOTOS[x.name]||'';
+    var _img=_u?'<img src="'+_u+'" style="width:22px;height:22px;object-fit:cover;border-radius:50%;margin-right:6px;vertical-align:middle'+(_u.indexOf('uefa.com')!==-1?';mix-blend-mode:multiply;filter:contrast(1.1)':'')+'" onerror="this.style.display=\'none\'">':'';
+    return'<div class="tr2"><div class="rnk '+rk[i]+'">'+(i+1)+'</div>'+_img+'<div class="tnm">'+esc(x.name)+'</div><div class="tvw"><div class="tvl">'+x.val+'</div><div class="tlb">'+lbl+'</div></div></div>';
   }).join(''):'<div class="empty" style="padding:14px">Sin datos</div>';
   return'<div class="tcrd"><div class="tch">'+title+'</div>'+rows+'</div>';
 }
@@ -1400,7 +1404,8 @@ function openPlayerModal(name){
       carByComp[comp].asistencias+=(s.asistencias||0);carByComp[comp].gc+=(s.gc||0);carByComp[comp].imbatidas+=(s.imbatidas||0);
     });
   });
-  var photoHtml=PLAYER_PHOTOS[name]?'<img src="'+PLAYER_PHOTOS[name]+'" style="width:44px;height:44px;object-fit:cover;border-radius:10px;border:1px solid '+pc+'40" onerror="this.style.display=\'none\'">':'<span style="font-size:18px;font-weight:800;color:'+pc+'">'+(PL[pos]?PL[pos][0]:pos)+'</span>';
+  var _murl=PLAYER_PHOTOS[name]||'';var _muefa=_murl.indexOf('uefa.com')!==-1;
+  var photoHtml=_murl?'<img src="'+_murl+'" style="width:44px;height:44px;object-fit:cover;border-radius:10px;border:1px solid '+pc+'40'+(_muefa?';mix-blend-mode:multiply;filter:contrast(1.1)':'')+'" onerror="this.style.display=\'none\'">':'<span style="font-size:18px;font-weight:800;color:'+pc+'">'+(PL[pos]?PL[pos][0]:pos)+'</span>';
   document.getElementById('pm-badge').innerHTML=photoHtml;
   document.getElementById('pm-badge').style.background=PLAYER_PHOTOS[name]?'transparent':pc+'22';
   document.getElementById('pm-badge').style.color=pc;
