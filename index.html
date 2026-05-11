@@ -772,9 +772,9 @@ function renderPartidos(){
       +'<span class="mc-act-mob"><div class="bdg b'+m.result+'">'+m.result+'</div><button class="del-btn" title="Editar" onclick="editMatch('+m.id+')" style="color:#3A8EE8">✏</button><button class="del-btn" onclick="removeMatch('+m.id+')">✕</button></span>'
       +'</div>'
       +'<div class="mc-matchrow">'
-      +'<div class="mc-team mc-home"><span class="mc-name" style="color:'+(hg?'#E8EDF3':'#5A6578')+'">'+esc(hn)+'</span>'+(isV&&RIVAL_LOGOS[m.rival]?'<img src="'+RIVAL_LOGOS[m.rival]+'" class="mc-img" onerror="this.style.display=\'none\'">':(!isV&&RM_LOGO?'<img src="'+RM_LOGO+'" class="mc-img" onerror="this.style.display=\'none\'">':''))+'</div>'
+      +'<div class="mc-team mc-home"><span class="mc-name" style="color:'+(hg?'#0F1318':'#0F1318')+'">'+esc(hn)+'</span>'+(isV&&RIVAL_LOGOS[m.rival]?'<img src="'+RIVAL_LOGOS[m.rival]+'" class="mc-img" onerror="this.style.display=\'none\'">':(!isV&&RM_LOGO?'<img src="'+RM_LOGO+'" class="mc-img" onerror="this.style.display=\'none\'">':''))+'</div>'
       +'<div class="mc-sbox"><span class="mc-s" style="color:'+rc+'">'+hs+'</span><span class="mc-dash">–</span><span class="mc-s" style="color:'+rc+'">'+as2+'</span>'+(m.pen?'<span style="font-size:9px;color:#E87820;font-weight:800;margin-left:3px;align-self:center">PEN</span>':'')+'</div>'
-      +'<div class="mc-team mc-away">'+(isV&&RM_LOGO?'<img src="'+RM_LOGO+'" class="mc-img" onerror="this.style.display=\'none\'">':(!isV&&RIVAL_LOGOS[m.rival]?'<img src="'+RIVAL_LOGOS[m.rival]+'" class="mc-img" onerror="this.style.display=\'none\'">':''))+'<span class="mc-name" style="color:'+(ag?'#E8EDF3':'#5A6578')+'">'+esc(an)+'</span></div>'
+      +'<div class="mc-team mc-away">'+(isV&&RM_LOGO?'<img src="'+RM_LOGO+'" class="mc-img" onerror="this.style.display=\'none\'">':(!isV&&RIVAL_LOGOS[m.rival]?'<img src="'+RIVAL_LOGOS[m.rival]+'" class="mc-img" onerror="this.style.display=\'none\'">':''))+'<span class="mc-name" style="color:'+(ag?'#0F1318':'#9CA3AF')+'">'+esc(an)+'</span></div>'
       +'</div>'
       +'<div class="mc-act mc-act-desk"><div class="bdg b'+m.result+'">'+m.result+'</div><button class="del-btn" title="Editar" onclick="editMatch('+m.id+')" style="color:#3A8EE8">✏</button><button class="del-btn" onclick="removeMatch('+m.id+')">✕</button></div>'
       +'</div>';
